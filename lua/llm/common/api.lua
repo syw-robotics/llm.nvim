@@ -473,7 +473,9 @@ function api.CloseLLM()
         ["\r"] = " ",
       })
 
-      filename = string.format("%s/%s-%s.json", conf.configs.history_path, _filename, os.date("%Y%m%d%H%M%S"))
+      local path = conf.configs.history_path
+      local timestamp = os.date(conf.configs.history_timestamp_format)
+      filename = string.format("%s/%s_%s_.json", path, _filename, timestamp)
     end
     local file = io.open(filename, "w")
     if file then
